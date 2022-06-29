@@ -1,0 +1,46 @@
+<div class="grid table-reservation" id="content" style="display: flex; flex-direction: column; align-items: center"> 
+    {{!-- <div class="booktable-banner" style="text-align: center;">THANK YOU FOR YOUR RESERVATION !!!</div> --}}
+    
+    <div class="row">
+        <div class="col l-12 table-location mb-40 mt-4">
+            <div class="content__header">
+                <h3 class="content__header-heading">
+                    <span class="under-line-effect under-line-effect--red">YOUR TABLE RESERVATION INFORMATION</span>
+                </h3>
+                <br/>
+                {{#each newtable}}
+                <div class="book-table-info">
+                    <div class="table-reservation-info">
+                        <h3>Customer: </h3>
+                        <h3>{{this.name}}</h3>
+                    </div>
+                    <div class="table-reservation-info">
+                        <h3>Email: </h3>
+                        <h3>{{this.email}}</h3>
+                    </div>
+                    <div class="table-reservation-info">
+                        <h3>Date: </h3>
+                        <h3>{{this.date}}</h3>
+                    </div>
+                    <div class="table-reservation-info">
+                        <h3>Time: </h3>
+                        <h3>{{this.time}}</h3>
+                    </div>
+                    <div class="table-reservation-info">
+                        <h3>TableID: </h3>
+                        <h3>{{this.tableID}}</h3>
+                    </div>
+                    
+                    <div class="table-reservation-info">
+                        <h3 style="text-align: center;">-------------------------------- *** --------------------------------</h3>
+                    </div>
+                </div>
+                {{else}}
+                <div>
+                    <h3 style="text-align: center;">You have not booked table yet !!!</h3>
+                </div>
+                {{/each}}
+            </div>
+        </div>  
+    </div>  
+</div>

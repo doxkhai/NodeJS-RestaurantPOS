@@ -1,0 +1,247 @@
+{{!-- <div class="header__slider">
+    <img src="/image/background-home.jpg" alt="" class="header__img">
+</div> --}}
+<div class="slider__simple ">
+        <div class="slider__container">
+            <div class="slider__image">
+                <img class="slider__item header__img" src="/image/background-home5.jpg" />
+                <img class="slider__item header__img" src="/image/background-img6.png" />
+                <img class="slider__item header__img" src="/image/background-home7.jpg" />
+                <img class="slider__item header__img" src="/image/background-home8.jpg" />
+                <img class="slider__item header__img" src="/image/background-home.jpg" />
+            </div>
+            <div class="slider__dots">
+                <div class="dot__item active"><input name="dot" type="radio"></div>
+                <div class="dot__item"><input name="dot" type="radio"></div>
+                <div class="dot__item"><input name="dot" type="radio"></div>
+                <div class="dot__item"><input name="dot" type="radio"></div>
+                <div class="dot__item"><input name="dot" type="radio"></div>
+            </div>
+            <div class="slider__button "> <button class="prev__btn "><<</button> <button class="next__btn ">>></button> </div>        </div>
+        </div>
+        
+</div>
+{{!-- <script src="/javascripts/j-query.js"></script>
+<script src="/javascripts/slider_backimg.js "></script> --}}
+
+<div class="shop grid ">
+    <span class="content__header-decs" style="color: grey; font-size: 30px">FEATURE PRODUCTS</span>
+    {{!-- COMBO --}}
+    <div class="content__header">
+        <h2 class="content__header-heading">
+            {{!-- <span class="under-line-effect under-line-effect--red">COMBO</span> --}}
+            <div class="tabs">
+                <div class="tab-item active">
+                    <i class="tab-icon"></i> COMBO
+                </div>
+                <div class="tab-item">
+                    <i class="tab-icon"></i> FOOD
+                </div>
+                <div class="tab-item">
+                    <i class="tab-icon"></i> DRINK
+                </div>
+                <div class="line"></div>
+            </div>
+        </h2>
+    </div>
+    <div class="tab-content">
+        <div class="tab-pane active">
+            <h2>COMBO</h2>
+            <div class="shop__wrap row feature-home">
+                {{#each dishes }}
+                {{#if (isMatch this.type_dish "Combo")}}
+                <div class="feature-item col l-4 m-12">
+                    <img src="{{imageload this.image this.imageType}}" alt="" class="product__item-img">
+                    <div class="product-body">
+                        <div class="product__item-heading">{{this.name}}</div>
+                        <div class="product__item-quanlity">
+                            <i class="product__item-icon fas fa-star"></i>
+                            <i class="product__item-icon fas fa-star"></i>
+                            <i class="product__item-icon fas fa-star"></i>
+                            <i class="product__item-icon fas fa-star"></i>
+                            <i class="product__item-icon fas fa-star"></i>
+                        </div>
+                        <div class="product__item-price">
+                            <span class="product__item-price-sale">${{this.price}}</span>
+                        </div>
+                        <form method="POST" action="/user/add-to-cart/{{this._id}}">
+                            <input type="hidden" name="qty" value="1">
+                            <button type="submit"  class="product__item-btn" name="id" value="{{this._id}}">ADD TO CART</button>
+                        <button class="product__item-btn js-details-btn" data-toggle="modal" data-target="#item-feature{{@index}}"><i class="far fa-search"></i></button>
+                        </form>
+                        
+                    </div>
+                </div>
+                {{/if}}
+                {{else}}
+                    No recommended combo.
+                {{/each}}
+            </div>
+        </div>
+        <div class="tab-pane">
+            <h2>FOOD</h2>
+            <div class="shop__wrap row feature-home">
+                {{#each dishes }}
+                {{#if (isMatch this.type_dish "Food")}}
+                <div class="feature-item col l-4 m-12">
+                    <img src="{{imageload this.image this.imageType}}" alt="" class="product__item-img">
+                    <div class="product-body">
+                        <div class="product__item-heading">{{this.name}}</div>
+                        <div class="product__item-quanlity">
+                            <i class="product__item-icon fas fa-star"></i>
+                            <i class="product__item-icon fas fa-star"></i>
+                            <i class="product__item-icon fas fa-star"></i>
+                            <i class="product__item-icon fas fa-star"></i>
+                            <i class="product__item-icon fas fa-star"></i>
+                        </div>
+                        <div class="product__item-price">
+                            <span class="product__item-price-sale">${{this.price}}</span>
+                        </div>
+                        <form method="POST" action="/user/add-to-cart/{{this._id}}">
+                            <input type="hidden" name="qty" value="1">
+                            <button type="submit"  class="product__item-btn" name="id" value="{{this._id}}">ADD TO CART</button>
+                        <button class="product__item-btn js-details-btn" data-toggle="modal" data-target="#item-feature{{@index}}"><i class="far fa-search"></i></button>
+                        </form>
+                        
+                    </div>
+                </div>
+                {{/if}}
+                {{else}}
+                    No recommended food.
+                {{/each}}
+            </div>
+        </div>
+        <div class="tab-pane">
+            <h2>DRINK</h2>
+            <div class="shop__wrap row feature-home">
+                {{#each dishes }}
+                {{#if (isMatch this.type_dish "Drink")}}
+                <div class="feature-item col l-4 m-12">
+                    <img src="{{imageload this.image this.imageType}}" alt="" class="product__item-img">
+                    <div class="product-body">
+                        <div class="product__item-heading">{{this.name}}</div>
+                        <div class="product__item-quanlity">
+                            <i class="product__item-icon fas fa-star"></i>
+                            <i class="product__item-icon fas fa-star"></i>
+                            <i class="product__item-icon fas fa-star"></i>
+                            <i class="product__item-icon fas fa-star"></i>
+                            <i class="product__item-icon fas fa-star"></i>
+                        </div>
+                        <div class="product__item-price">
+                            <span class="product__item-price-sale">${{this.price}}</span>
+                        </div>
+                        <form method="POST" action="/user/add-to-cart/{{this._id}}">
+                            <input type="hidden" name="qty" value="1">
+                            <button type="submit"  class="product__item-btn" name="id" value="{{this._id}}">ADD TO CART</button>
+                            <button class="product__item-btn js-details-btn" data-toggle="modal" data-target="#item-feature{{@index}}"><i class="far fa-search"></i></button>
+                        </form>
+                       
+                    </div>
+                </div>
+                {{/if}}
+                {{else}}
+                    No recommended drink.
+                {{/each}}
+            </div>
+        </div>
+    </div>
+    
+    {{!-- FOOD --}}
+    {{!-- <div class="content__header">
+        <h3 class="content__header-heading">
+            <span class="under-line-effect under-line-effect--red">FOOD</span>
+        </h3>
+    </div> --}}
+    
+{{!-- DRINK --}}
+    {{!-- <div class="content__header">
+        <h3 class="content__header-heading">
+            <span class="under-line-effect under-line-effect--red">DRINK</span>
+        </h3>
+    </div> --}}
+    
+
+</div>
+
+
+
+{{!-- MODAL/ITEM FEATURES --}}
+{{#each dishes}}
+{{!-- MODAL/ITEM FEATURES --}}
+<div class="modal" id="item-feature{{@index}}">
+    <div class="modal-container js-modal-container">
+        <div class="modal-close js-modal-close" data-toggle="modal" data-target="#item-feature{{@index}}">
+            
+            <i class="ti-close"></i>
+        </div>
+        <div class="modal-body">
+            <div class="modal-product">
+                <!-- Start product images -->
+                <div class="product-images">
+                    <div class="main-image images">
+                        <img alt="" src="{{imageload this.image this.imageType}}" class="img-responsive">
+                    </div>
+                </div>
+                <!-- end product images -->
+                <div class="product-info">
+                    <h1>{{this.name}}</h1>
+                    <div class="price-box">
+                        <h1>Unit price</h1>
+                        <span class="new-price">${{this.price}}</span>
+                    </div>
+                    <form method="POST" action="/user/add-to-cart/{{this._id}}">
+                    <div class="quantity-box">
+                        <h1>Quantity</h1>
+                        <div class="quantity-box__wrap">
+                            {{!-- <button class="btn-minus">-</button>
+                            <span class="slidebar__wrap-info-quantity">1</span>
+                            <button class="btn-plus">+</button> --}}
+                            <input type="number" class="slide-cart__quantity" name="qty" value="1">
+                        </div>
+                    </div>
+                    <div class="quick-desc">{{this.description}}</div>
+                    <button class="btn-large featured-product__btn checkout-btn modal-btn" type="submit" style="margin-left: 5px" name="id" value="{{this._id}}">ADD TO CART</button>
+                    </form>
+                </div>
+                <!-- .product-info -->
+            </div>
+        </div>
+    </div>
+</div>
+{{/each}}
+
+<script>
+    const buyBtns = document.querySelectorAll('.js-details-btn')
+    const modal = document.querySelector('.modal')
+    const modalContainer = document.querySelector('.js-modal-container')
+    const modalClose = document.querySelector('.js-modal-close')
+
+
+    //Hàm hiển thị  modal (thêm class open vào modal)
+    function showBuyTickets(e) {
+        e.preventDefault()
+        //modal.classList.add('open')
+    }
+    //lặp qua từng thẻ button và nghe hành vi click
+    for (const buyBtn of buyBtns) {
+        buyBtn.addEventListener('click', showBuyTickets)
+    }
+    //Hàm ẩn modal (bỏ class open trong thẻ modal đi)
+    function hideBuyTickets() {
+        modal.classList.remove('open')
+    }
+    //nghe hành vi click vào button close
+    modalClose.addEventListener('click', hideBuyTickets)
+
+    //Ẩn modal khi click bên ngoài
+    modal.addEventListener('click', hideBuyTickets)
+
+    modalContainer.addEventListener('click', function (event) {
+        event.stopPropagation();
+    })
+
+</script>
+
+
+
+<script src="/javascripts/tabUI.js"></script>

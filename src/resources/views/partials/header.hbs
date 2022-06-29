@@ -1,0 +1,233 @@
+<div class="header__index">
+  <section class="header">
+    <div class="header__logo">
+     
+      <a href="/" class="header__logo-link">
+        <img src="/image/logo123.png"
+          alt="" class="header__logo-img">
+      </a>
+    </div>
+    <div class="header__navbar hide-on-tablet-mobile">
+      <ul class="header__navbar-list">
+        <li class="header__navbar-item">
+          <a href="/" class="header__navbar-item-link">HOME</a>
+
+        <li class="header__navbar-item">
+          <a href="/menu" class="header__navbar-item-link">MENU</a>
+
+        </li>
+
+        <li class="header__navbar-item">
+          <a href="/booktable" class="header__navbar-item-link">TABLE RESERVATION</a>
+        </li>
+
+        {{#if (isMatch user.permission "Admin")}}
+        <li class="header__navbar-item">
+          <a href="" class="header__navbar-item-link">
+                <img src="/image/star_icon.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                Admin
+          </a>
+          <ul class="header__subnav-list">
+            <li class="header__subnav-item">
+              <a href="/admin" class="header__subnav-link">USER INFORMATION</a>
+            </li>
+            <li class="header__subnav-item header__subnav-item">
+              <a href="/admin/createManager" class="header__subnav-link">ADD MANAGER</a>
+            </li>
+            
+            <li class="header__subnav-item header__subnav-item">
+              <a href="/user/logout" class="header__subnav-link">SIGN OUT</a>
+            </li>
+          </ul>
+        </li>
+        {{/if}}
+
+        {{#if (isMatch user.permission "Manager")}}
+        <li class="header__navbar-item">
+          <a href="" class="header__navbar-item-link">
+                <img src="/image/star_icon.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                {{user.name}}
+          </a>
+          <ul class="header__subnav-list">
+            <li class="header__subnav-item">
+              <a href="/manager/viewrevenue" class="header__subnav-link">VIEW REVENUE</a>
+            </li>
+            <li class="header__subnav-item header__subnav-item">
+              <a href="/manager/create" class="header__subnav-link">ADD NEW DISH</a>
+            </li>
+            <li class="header__subnav-item header__subnav-item">
+              <a href="/manager/vieworders" class="header__subnav-link">VIEW ORDERS</a>
+            </li>
+            <li class="header__subnav-item header__subnav-item">
+              <a href="/manager/viewtablereservation" class="header__subnav-link">TABLE RESERVATION MANAGEMENT</a>
+            </li>
+            <li class="header__subnav-item header__subnav-item">
+              <a href="/manager/viewtCustomerFeedback" class="header__subnav-link">VIEW FEEDBACK</a>
+            </li>
+            <li class="header__subnav-item header__subnav-item">
+              <a href="/user/logout" class="header__subnav-link">SIGN OUT</a>
+            </li>
+          </ul>
+        </li>
+        {{/if}}
+
+
+
+        {{#if (isMatch user.permission "Customer")}}
+        <li class="header__navbar-item">
+          <a href="/user" class="header__navbar-item-link">
+                <img src="{{imageload user.image user.imageType}}" id="profileImage" width="30" height="30" class="d-inline-block align-top" alt="">
+                {{user.name}}
+          </a>
+          <ul class="header__subnav-list">
+            <li class="header__subnav-item">
+              <a href="/user" class="header__subnav-link">USER INFORMATION</a>
+            </li>
+            <li class="header__subnav-item header__subnav-item">
+              <a href="/user/ordering" class="header__subnav-link">YOUR CART</a>
+            </li>
+            <li class="header__subnav-item header__subnav-item">
+              <a href="/user/ordered" class="header__subnav-link">ORDER HISTORY</a>
+            </li>
+            <li class="header__subnav-item header__subnav-item">
+              <a href="/user/viewbooktable2" class="header__subnav-link">YOUR BOOKED TABLE</a>
+            </li>
+            <li class="header__subnav-item header__subnav-item">
+              <a href="/user/logout" class="header__subnav-link">LOGOUT</a>
+            </li>
+          </ul>
+        </li>
+        {{/if}}
+
+
+        
+        {{#unless user}}
+        <li class="header__navbar-item">
+            <a href="/loginpage" class="header__navbar-item-link">ACCOUNT</a>
+            <ul class="header__subnav-list">
+              <li class="header__subnav-item">
+                <a href="/loginpage" class="header__subnav-link">Sign in</a>
+              </li>
+              <li class="header__subnav-item header__subnav-item">
+                <a href="/register" class="header__subnav-link">Register</a>
+              </li>
+            </ul>
+          </li>
+        {{/unless}}
+
+      </ul>
+    </div>
+
+    <div class="header-content__search">
+      <div class="header-content__search-input">
+        <form method="GET" action="/search">
+        <input type="text" class="header-content__search-input-wrap" name='foodname' placeholder="Search products...">
+        <div class="header-content__search-history">
+        </div>
+        <button class="header-content__search-btn header-content__search-icon fal fa-search" type="submit"></button> 
+        {{!-- <div class="header-content__search-btn" >
+          <button class="header-content__search-icon fal fa-search" type="submit"></button>
+        </div> --}}
+        </form>
+      </div>
+    </div>
+
+
+
+    {{#if (isMatch user.permission "Customer")}}
+    
+
+       
+    <input type="checkbox" hidden id="header-nav" class="header-input">
+    
+    <label for="header-nav" class="header-slide__menu ">
+      <i class="far fa-shopping-cart header-slide__menu-img"></i>
+      <span class="header-slide__notice">{{calTotalQty totalQty}}</span>
+
+    </label>
+
+    
+    <div class="slidebar__container hide-on-tablet-mobile">
+      <label for="header-nav" class="slidebar__close ">
+        <i class="slidebar__close-icon far fa-times-circle"></i>
+      </label>
+      <div class="slidebar__wrap">
+        <div class="slidebar__wrap-header">
+          <span class="slidebar__wrap-header-quantity"></span>
+          <h3 class="slidebar__wrap-header-heading">
+              YOUR CART
+            </span>
+          </h3>
+        </div>
+        <ul class="slidebar__wrap-list">
+
+         
+          {{#if cartdishes}}
+              
+       
+          {{#each cartdishes}}
+          <li class="slidebar__wrap-item">
+            <img src="{{imageload this.item.image this.item.imageType}}" alt="" class="slidebar__wrap-img">
+            <div class="slidebar__wrap-info">
+              <a href="" class="slidebar__wrap-info-product">{{this.item.name}}</a>
+
+              <span class="slidebar__wrap-info-food">
+                {{!-- <button class="btn-minus">-</button>
+                <input class="slidebar__wrap-info-quantity" type="text" value="{{ this.qty }}"></input>
+                <button class="btn-plus">+</button> --}}
+                <input type="number" class="slide-cart__quantity" value="{{this.qty}}" readonly></input>
+              </span>
+            </div>
+            <div class="slidebar__wrap-trash-and-price">
+              <form method="POST" action="/user/remove-from-cart/{{this.item._id}}">
+                  <button type="submit" class="btn-remove"  id="id" name="id" value="{{this.item._id}}"><i class="fal fa-trash-alt"></i> </button>
+                </form>
+              <div class="slidebar__wrap-price">${{this.price}}</div>
+            </div>
+          </li>
+            
+          {{/each}}
+          
+          
+          {{!-- <li class="slidebar__wrap-item">
+            <img src="/image/fried_chicken.jpg" alt="" class="slidebar__wrap-img">
+            <div class="slidebar__wrap-info">
+              <a href="" class="slidebar__wrap-info-product">Fried Chicken</a>
+
+              <a href="" class="slidebar__wrap-info-food">
+                <button class="btn-minus">-</button>
+                <span class="slidebar__wrap-info-quantity">1</span>
+                <button class="btn-plus">+</button>
+              </a>
+            </div>
+            <div class="slidebar__wrap-trash-and-price">
+              <i class="fal fa-trash-alt trash-btn"></i>
+              <div class="slidebar__wrap-price">5</div>
+            </div>
+          </li> --}}
+          
+        </ul>
+        <div class="slidebar__wrap-total">
+          <span class="slidebar__wrap-sub-total">SUBTOTAL</span>
+          <span class="slidebar__wrap-sub-total">${{totalPrice}}</span>
+        </div>
+        <a class="btn-large featured-product__btn checkout-btn"
+          href="/user/payment">CHECKOUT</a>
+            {{else}}
+          <li class="slidebar__wrap-item">
+            <img src="/image/empty-cart.png" alt="" class="empty__cart">
+          </li>
+            {{/if}} 
+      </div>
+
+    </div>
+             
+    {{/if}}
+    <!-- end silebar -->
+
+        {{!-- CART --}}
+
+    
+  </section>
+
+</div>

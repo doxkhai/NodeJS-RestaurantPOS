@@ -1,0 +1,150 @@
+<div id="content" class="col-sm-12">
+      <h1 class="under-line-effect under-line-effect--red" style="text-align: center; color: grey">SHOPPING CART</h1>
+{{#if cartdishes}}
+      {{!-- <form method="post"> --}}
+        <div class="table-responsive table-checkout-cart">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="text-center">Remove</th>
+                <th class="text-center">Image</th>
+                <th class="text-center">Product Name</th>
+                <th class="text-center">Quantity</th>
+                <th class="text-right">Unit Price</th>
+                <th class="text-right">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+            
+              
+              {{#each cartdishes }}
+              
+              <tr data-line="1">
+                
+                <td class="text-center btn-remove-product">
+
+                 <form method="POST" action="/user/remove-from-cart/{{this.item._id}}">
+                  <button type="submit" class="btn-remove" name="id"  id="id" value="{{this.item._id}}" style="margin-left: 5px;"><i class="fal fa-trash-alt"></i> </button>
+                 </form>
+                 
+                </td>
+                 
+                <td class="text-center">
+                  <a href="">
+                    <img src="{{imageload this.item.image this.item.imageType}}" alt=""  class="product_item-img">
+                    
+                  </a>
+                </td>
+                <td class="text-center">
+                  <h5><a href="">{{this.item.name}}</a></h5>
+                 
+                </td>
+                <td class="text-center">
+                  <div class="input-group btn-block" style="max-width: 80px;min-width: 70px;">
+                    <div class="form-quantity">
+                      {{!-- <div class="btn-minus"><input value="-" class="qty minus" onclick="click(-1,{{this.qty}})"></div> --}}
+                      {{!-- <input type="text" name="updates[]" value="{{this.qty}}" style="color: black" min="0" class="form-control cart-qty" data-line="1"> --}}
+                      {{!-- <p id="test">{{this.qty}}</p> --}}
+                      {{!-- <div class="btn-plus"><input type="button" value="+" class="qty plus" onclick="increase({{this}})"></div> --}}
+                      <input type="number" class="cart__quantity" value="{{this.qty}}" min="1" style="width: 120px; padding: 0px; box-sizing: content-box">
+                    </div>
+                  </div>
+                </td>
+                <td class="text-right"><span class="price-product"><span class="money">${{this.item.price}}</span></span></td>
+                <td class="text-right"><span class="total-price"><span class="money">${{this.price}}</span></span></td>
+              </tr>
+              
+              {{/each}}
+
+            
+{{!-- <button type="submit" title="Update" class="product__item-btn btn-red" style="cursor: pointer; color: white">UPDATE CART</button> --}}
+            </tbody>
+          </table>
+          <div class="checkout-cart-buttons group-btn-1">
+            <div class="button-shopping">
+              <button class="btn danger product__item-btn btn-red " style="cursor: pointer; color:white; float: right;margin: 20px 0;" data-toggle="modal" data-target="#cancel-order">CLEAR ALL ITEMS</button>
+              <form name="update-cart-form" method="POST" action="/user/update-cart">
+              <input type="hidden" name="string" id="update-cart">
+             <button type="button" id="update-cart-btn" title="Update" class="product__item-btn btn-red" style="cursor: pointer; color: white; float: right;margin: 20px 0;">UPDATE CART</button>
+             </form>
+            </div>
+            
+            {{!-- <div class="checkout-cart-buttons group-btn-1">
+              <button type="submit" title="Update" class=" btn-large featured-product__btn mb-40 btn-red" style="cursor: pointer">Update cart</button>
+            </div> --}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-8 col-xs-12">
+            <div class="panel-group" id="accordion">
+              
+              <div class="panel panel-default">
+                
+                <div id="collapse-coupon" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <div class="col-sm-12">
+                      <textarea class="form-control" rows="6" name="note" id="cartSpecialInstructions"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="box-show-price">
+              <table class="table table-bordered">
+                <tbody><tr>
+                  <td colspan="2" class="text-center"><strong>Shipping, taxes, and discounts will be calculated at checkout.</strong></td>
+                </tr>
+                
+                <tr>
+                  <td class="text-right"><strong>Subtotal:</strong></td>
+                  <td class="text-right"><span class="total-price"><span class="money" data-currency-usd="$250.00">${{totalPrice}}</span></span></td>
+                </tr>
+              </tbody></table>
+              <div class="checkout-cart-buttons group-btn-2">
+                <div class="button-checkout-cart">    
+                  <a href="/user/payment" class="product__item-btn btn-red" style="cursor: pointer; float: right; color: white">PROCEED TO CHECK OUT</a>
+                  <a href="/" class="product__item-btn btn-red" style="color: white; cursor: pointer; margin: 20px 0; float: right">CONTINUE SHOPPING</a>   
+                </div>
+
+                
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <script src="/javascripts/cartchange.js"></script>
+
+            <!--confirm cancel-->
+        <div id="cancel-order" class="modal" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Warning !!!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Are you sure you want to delete all your cart?</p>
+              </div>
+              <div class="modal-footer">
+                <a href="/user/clear-cart" id="btn-cancel-order" class="btn btn-danger" >Confirm</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      {{else}}
+        <h3 style="text-align:center; margin-top: 50px;"> CART EMPTY !!! <a href="/menu" style="cursor:pointer; font-size:20px; font-weight:bold">ORDER NOW</a></h3>
+        
+
+
+
+
+{{/if}}
